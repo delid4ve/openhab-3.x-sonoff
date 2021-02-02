@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="sonoff"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
+
+	<bridge-type id="account">
+		<label>Sonoff Account Thing</label>
+		<description>Sonoff Account</description>
+		<config-description>
+			<parameter name="email" type="text" required="true">
+				<label>Email</label>
+				<description>Email</description>
+			</parameter>
+			<parameter name="password" type="text" required="true">
+				<label>Password</label>
+				<description>Password</description>
+			</parameter>
+			<parameter name="region" type="text" required="true">
+				<label>Region</label>
+				<description>Region</description>
+			</parameter>
+			<parameter name="ipaddress" type="text" required="true">
+				<label>IP Address</label>
+				<description>IP address of openhab for multicast packets from devices (may have more than one NIC)</description>
+			</parameter>
+			<parameter name="accessmode" type="text" required="true">
+				<label>Access Mode</label>
+				<default>"mixed"</default>
+				<options>
+					<option value="mixed">Cloud and Local</option>
+					<option value="cloud">Cloud Only</option>
+					<option value="local">Local Only</option>
+				</options>
+			</parameter>
+		</config-description>
+
+	</bridge-type>
+
+	<thing-type id="1">
+		<supported-bridge-type-refs>
+			<bridge-type-ref id="account"/>
+		</supported-bridge-type-refs>
+		<label>S20 , S26 , BASIC , MINI</label>
+		<description>1 Channel Relay</description>
+		<channels>
+			<channel id="switch" typeId="switch"/>
+			<channel id="offlineTime" typeId="offlineTime"/>
+			<channel id="online" typeId="online"/>
+			<channel id="rssi" typeId="rssi"/>
+		</channels>
+		<config-description>
+			<parameter name="deviceId" type="text" required="true">
+				<label>Device ID</label>
+				<description>Device ID</description>
+			</parameter>
+		</config-description>
+	</thing-type>
+
+	<thing-type id="2">
+		<supported-bridge-type-refs>
+			<bridge-type-ref id="account"/>
+		</supported-bridge-type-refs>
+		<label>SOCKET_2 - Please let me know the model</label>
+		<description>SOCKET_2 - Please let me know the model</description>
+		<channels>
+			<channel id="switch0" typeId="switch0"/>
+			<channel id="switch1" typeId="switch1"/>
+			<channel id="offlineTime" typeId="offlineTime"/>
+			<channel id="online" typeId="online"/>
+			<channel id="rssi" typeId="rssi"/>
+		</channels>
+		<config-description>
+			<parameter name="deviceId" type="text" required="true">
+				<label>Device ID</label>
+				<description>Device ID</description>
+			</parameter>
+		</config-description>
+	</thing-type>
+
+	<thing-type id="3">
+		<supported-bridge-type-refs>
+			<bridge-type-ref id="account"/>
+		</supported-bridge-type-refs>
+		<label>SOCKET_3 - Please let me know the model</label>
+		<description>SOCKET_3 - Please let me know the model</description>
+		<channels>
+			<channel id="switch0" typeId="switch0"/>
+			<channel id="switch1" typeId="switch1"/>
+			<channel id="switch2" typeId="switch2"/>
+			<channel id="offlineTime" typeId="offlineTime"/>
+			<channel id="online" typeId="online"/>
+			<channel id="rssi" typeId="rssi"/>
+		</channels>
+		<config-description>
+			<parameter name="deviceId" type="text" required="true">
+				<label>Device ID</label>
+				<description>Device ID</description>
+			</parameter>
+		</config-description>
+	</thing-type>
+
+	<thing-type id="4">
+		<supported-bridge-type-refs>
+			<bridge-type-ref id="account"/>
+		</supported-bridge-type-refs>
+		<label>SOCKET_4 - Please let me know the model</label>
+		<description>SOCKET_4 - Please let me know the model</description>
+		<channels>
+			<channel id="switch0" typeId="switch0"/>
+			<channel id="switch1" typeId="switch1"/>
+			<channel id="switch2" typeId="switch2"/>
+			<channel id="switch3" typeId="switch3"/>
+			<channel id="offlineTime" typeId="offlineTime"/>
+			<channel id="online" typeId="online"/>
+			<channel id="rssi" typeId="rssi"/>
+		</channels>
+		<config-description>
+			<parameter name="deviceId" type="text" required="true">
+				<label>Device ID</label>
+				<description>Device ID</description>
+			</parameter>
+		</config-description>
+	</thing-type>
+
+	<thing-type id="5">
+		<supported-bridge-type-refs>
+			<bridge-type-ref id="account"/>
+		</supported-bridge-type-refs>
+		<label>SOCKET_POWER - Please let me know the model</label>
+		<description>SOCKET_POWER - Please let me know the model</description>
+		<channels>
+			<channel id="switch" typeId="switch"/>
+			<channel id="offlineTime" typeId="offlineTime"/>
+			<channel id="online" typeId="online"/>
+			<channel id="rssi" typeId="rssi"/>
+		</channels>
+		<config-description>
+			<parameter name="deviceId" type="text" required="true">
+				<label>Device ID</label>
+				<description>Device ID</description>
+			</parameter>
+		</config-description>
+	</thing-type>
+
+	<thing-type id="6">
+		<supported-bridge-type-refs>
+			<bridge-type-ref id="account"/>
+		</supported-bridge-type-refs>
+		<label>T11C , TX1C , G1</label>
+		<description>1 Channel Switch</description>
+		<channels>
+			<channel id="switch0" typeId="switch0"/>
+			<channel id="offlineTime" typeId="offlineTime"/>
+			<channel id="online" typeId="online"/>
+			<channel id="rssi" typeId="rssi"/>
+		</channels>
+		<config-description>
+			<parameter name="deviceId" type="text" required="true">
+				<label>Device ID</label>
+				<description>Device ID</description>
+			</parameter>
+		</config-description>
+	</thing-type>
+
+	<thing-type id="7">
+		<supported-bridge-type-refs>
+			<bridge-type-ref id="account"/>
+		</supported-bridge-type-refs>
+		<label>T12C , TX2C , G2</label>
+		<description>2 Channel Switch</description>
+		<channels>
+			<channel id="switch0" typeId="switch0"/>
+			<channel id="switch1" typeId="switch1"/>
+			<channel id="offlineTime" typeId="offlineTime"/>
+			<channel id="online" typeId="online"/>
+			<channel id="rssi" typeId="rssi"/>
+		</channels>
+		<config-description>
+			<parameter name="deviceId" type="text" required="true">
+				<label>Device ID</label>
+				<description>Device ID</description>
+			</parameter>
+		</config-description>
+	</thing-type>
+
+	<thing-type id="8">
+		<supported-bridge-type-refs>
+			<bridge-type-ref id="account"/>
+		</supported-bridge-type-refs>
+		<label>T13C , TX3C , G3</label>
+		<description>3 Channel Switch</description>
+		<channels>
+			<channel id="switch0" typeId="switch0"/>
+			<channel id="switch1" typeId="switch1"/>
+			<channel id="switch2" typeId="switch2"/>
+			<channel id="offlineTime" typeId="offlineTime"/>
+			<channel id="online" typeId="online"/>
+			<channel id="rssi" typeId="rssi"/>
+		</channels>
+		<config-description>
+			<parameter name="deviceId" type="text" required="true">
+				<label>Device ID</label>
+				<description>Device ID</description>
+			</parameter>
+		</config-description>
+	</thing-type>
+
+	<thing-type id="9">
+		<supported-bridge-type-refs>
+			<bridge-type-ref id="account"/>
+		</supported-bridge-type-refs>
+		<label>SWITCH_4 - Please let me know the model</label>
+		<description>4 Channel Switch</description>
+		<channels>
+			<channel id="switch0" typeId="switch0"/>
+			<channel id="switch1" typeId="switch1"/>
+			<channel id="switch2" typeId="switch2"/>
+			<channel id="switch3" typeId="switch3"/>
+			<channel id="offlineTime" typeId="offlineTime"/>
+			<channel id="online" typeId="online"/>
+			<channel id="rssi" typeId="rssi"/>
+		</channels>
+		<config-description>
+			<parameter name="deviceId" type="text" required="true">
+				<label>Device ID</label>
+				<description>Device ID</description>
+			</parameter>
+		</config-description>
+	</thing-type>
+
+	<thing-type id="15">
+		<supported-bridge-type-refs>
+			<bridge-type-ref id="account"/>
+		</supported-bridge-type-refs>
+		<label>TH10 , TH16</label>
+		<description>1 Channel Relay with Temperature and Humidity Input</description>
+		<channels>
+			<channel id="switch" typeId="switch"/>
+			<channel id="mainSwitch" typeId="mainSwitch"/>
+			<channel id="sensorType" typeId="sensorType"/>
+			<channel id="temperature" typeId="temperature"/>
+			<channel id="humidity" typeId="humidity"/>
+			<channel id="offlineTime" typeId="offlineTime"/>
+			<channel id="online" typeId="online"/>
+			<channel id="rssi" typeId="rssi"/>
+		</channels>
+		<config-description>
+			<parameter name="deviceId" type="text" required="true">
+				<label>Device ID</label>
+				<description>Device ID</description>
+			</parameter>
+		</config-description>
+	</thing-type>
+
+	<thing-type id="32">
+		<supported-bridge-type-refs>
+			<bridge-type-ref id="account"/>
+		</supported-bridge-type-refs>
+		<label>POWR2</label>
+		<description>1 Channel Relay with Energy Monitoring</description>
+		<channels>
+			<channel id="switch" typeId="switch"/>
+			<channel id="current" typeId="current"/>
+			<channel id="voltage" typeId="voltage"/>
+			<channel id="power" typeId="power"/>
+			<channel id="offlineTime" typeId="offlineTime"/>
+			<channel id="online" typeId="online"/>
+			<channel id="rssi" typeId="rssi"/>
+		</channels>
+		<config-description>
+			<parameter name="deviceId" type="text" required="true">
+				<label>Device ID</label>
+				<description>Device ID</description>
+			</parameter>
+		</config-description>
+	</thing-type>
+
+	<thing-type id="77">
+		<supported-bridge-type-refs>
+			<bridge-type-ref id="account"/>
+		</supported-bridge-type-refs>
+		<label>Micro</label>
+		<description>Micro USB Adaptor</description>
+		<channels>
+			<channel id="switch0" typeId="switch0"/>
+			<channel id="offlineTime" typeId="offlineTime"/>
+			<channel id="online" typeId="online"/>
+			<channel id="rssi" typeId="rssi"/>
+		</channels>
+		<config-description>
+			<parameter name="deviceId" type="text" required="true">
+				<label>Device ID</label>
+				<description>Device ID</description>
+			</parameter>
+		</config-description>
+	</thing-type>
+
+</thing:thing-descriptions>

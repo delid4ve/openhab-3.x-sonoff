@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.6.0" name="org.openhab.binding.sonoff-2.5.11-SNAPSHOT">
+    <feature version="0.0.0">
+        <feature>openhab-runtime-base</feature>
+        <bundle>mvn:org.openhab.addons.bundles/org.openhab.binding.sonoff/2.5.11-SNAPSHOT</bundle>
+    </feature>
+</features>
