@@ -60,26 +60,22 @@ public class SonoffHandlerFactory extends BaseThingHandlerFactory {
     @Override
     protected @Nullable ThingHandler createHandler(Thing thing) {
         ThingTypeUID thingTypeUID = thing.getThingTypeUID();
-        ThingHandler handler = null;
-        switch (thingTypeUID.toString()) {
-            case "THING_TYPE_ACCOUNT":
-                handler = new AccountHandler((Bridge) thing, webSocketFactory, httpClientFactory, gson);
-                break;
-            case "THING_TYPE_1":
-            case "THING_TYPE_2":
-            case "THING_TYPE_3":
-            case "THING_TYPE_4":
-            case "THING_TYPE_5":
-            case "THING_TYPE_6":
-            case "THING_TYPE_7":
-            case "THING_TYPE_8":
-            case "THING_TYPE_9":
-            case "THING_TYPE_15":
-            case "THING_TYPE_32":
-            case "THING_TYPE_77":
-                handler = new SwitchHandler(thing, gson);
-                break;
+        if (thingTypeUID.equals(THING_TYPE_ACCOUNT)) {
+            return new AccountHandler((Bridge) thing, webSocketFactory, httpClientFactory, gson);
+        } else if (thingTypeUID.equals(THING_TYPE_1) || thingTypeUID.equals(THING_TYPE_2)
+                || thingTypeUID.equals(THING_TYPE_3) || thingTypeUID.equals(THING_TYPE_4)
+                || thingTypeUID.equals(THING_TYPE_5) || thingTypeUID.equals(THING_TYPE_6)
+                || thingTypeUID.equals(THING_TYPE_7) || thingTypeUID.equals(THING_TYPE_8)
+                || thingTypeUID.equals(THING_TYPE_9) ||
+
+                thingTypeUID.equals(THING_TYPE_15) ||
+
+                thingTypeUID.equals(THING_TYPE_32) ||
+
+                thingTypeUID.equals(THING_TYPE_77)) {
+            return new SwitchHandler(thing, gson);
+        } else {
+            return null;
         }
-        return handler;
     }
 }
