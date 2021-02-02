@@ -6,6 +6,7 @@ https://github.com/bwp91
 
 https://github.com/AlexxIT
 
+https://github.com/RealZimboGuy
 
 # sonoff Binding
 
