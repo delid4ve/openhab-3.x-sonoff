@@ -1,3 +1,10 @@
+Huge thanks to the following, this would not be possible without you:
+
+https://github.com/skydiver
+https://github.com/bwp91
+https://github.com/AlexxIT
+
+
 # sonoff Binding
 
 _Give some details about what this binding is meant for - a protocol, system, specific device._
