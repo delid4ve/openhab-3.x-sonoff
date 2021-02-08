@@ -65,14 +65,14 @@ Polling Interval: interval in seconds to retreive non essential channels such as
 Bridge sonoff:account:uniqueName "Sonoff Account" @ "myLocation" 
 [ email="account@example.com", password="myPassword",countryCode="+00",accessmode="mixed",ipaddress="192.168.0.2",pollingInterval=60 ] {
 32      GarageAirConditioning         "Garage Air Conditioning"   @   "thingLocation"     [ deviceId="1000bd9fe9" ]
-32      SwimmingPoolHeatPump		      "Swimming Pool Heat Pump"   @   "thingLocation"     [ deviceId="1000642d4d" ]
+32      SwimmingPoolHeatPump		  "Swimming Pool Heat Pump"   @   "thingLocation"     [ deviceId="1000642d4d" ]
 Bridge  sonoff:28:uniqueName:RFBridge "RFBridge"                  @   "thingLocation"     [ deviceId="1000e72cb8" ] 
 {
-rfsensor	DoorContact       "Door Contact"		        @ "contactLocation"	[ id="0" ]
+rfsensor	DoorContact       "Door Contact"		    @ "contactLocation"	[ id="0" ]
 rfsensor	WindowContact     "Window Contact"	        @ "contactLocation"	[ id="1" ]
-rfsensor	PIRSensor         "PIR Sensor"		          @ "sensorLocation"	[ id="2" ]
+rfsensor	PIRSensor         "PIR Sensor"		        @ "sensorLocation"	[ id="2" ]
 }	
-77       USBSwitch			                "USB Switch"			        @   "thingLocation"	     [ deviceId="1000dc155b" ]	
+77       USBSwitch			           "USB Switch"			       @   "thingLocation"	   [ deviceId="1000dc155b" ]	
 }
 ```
 
