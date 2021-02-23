@@ -59,38 +59,58 @@ Cloud Only - UUID2026: Zigbee Motion Sensor
 ## Setup
 
 Add an 'Account' thing and configure.
+
 email: your ewelink email address
+
 password: your ewelink password
+
 countryCode: the country code for your location prefixed with a +. i.e. UK: +44, USA: +1
+
 ipaddress: the ip address of your openhab installation without port.  ie: 192.168.1.10 (This is used for local mode and must have multicast enabled)
+
 accessmode: your choice of mode for the binding
+
 initialize: set to true for first run or when adding new devices to your ewelink account.
 
 The account should now come online and if initialize is set to true will create a cache of all your devices under userdata/sonoff.
+
 Should any devices not be supported please send @delid4ve the file that is generated for the deviceid you want added.
+
 
 * Please note there is a known bug within openhab if you are using text files.  If on changing a config parameter your devices do not come online then please remove the file file and re-add.  If this does not resaolve the issue you may have to remove and re-add the binding.
 
 ## Discovery
 
 Once you have initialized the account, run discovery as normal.
+
 All devices support automatic discovery.
+
 For Sub devices, i.e sensors connected to an RF Bridge or Zigbee bridge, add the main device and then run discovery again to find any connected devices.
 
 ## Local vs Cloud
 
 Not all devices support local mode such as the zigbee bridge.
+
 If local mode is supported and once initialized, the device can be blocked by your firewall to prevent external access.
+
 If you are in mixed mode, locally supported devices can be blocked at your firewall and will use local only mode
 
+
 POW/POWR2 in local mode: 
+
 In order to retreive energy data when operating in local only mode there are 2 seperate configuration parameters: (Not required when in LAN Development mode)
+
 Enable Local Polling: enable local polling of energy data
+
 Polling Interval for Local Only mode: interval in seconds betwen polls
 
+
 POW/POWR2 Consumption:
+
 In order to retreive consumption data (cloud only) there are 2 seperate configuration parameters:
+
 Enable consumption polling: on/off
+
 Polling interval for consumption data: interval in seconds to retreive the data
 
 
@@ -99,6 +119,7 @@ Please bear in mind that polling for data is a burden on your system resources. 
 ## Bugs
 
 Please report any bugs on my github:
+
 https://github.com/delid4ve/openhab-sonoff/issues
 
 Please ensure you include the version you are using and any debug log information that is applicable.  Please also include the file that is created for the device under userdata/sonoff/deviceid.txt
