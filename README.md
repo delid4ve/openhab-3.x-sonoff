@@ -7,9 +7,13 @@ Allows Control/Updates of Ewelink based devices using the cloud and/or LAN.
 Currently known to support (non exhaustive):
 
 Mixed Mode - UUID1: S20, S26, Basic, Mini, Mini PciE Card
+
 Mixed Mode - UUID2: Unknown Models
+
 Mixed Mode - UUID3: Unknown Models
+
 Mixed Mode - UUID4: Unknown Models
+
 Mixed Mode - UUID5: POW
 Mixed Mode - UUID6: T11C, TX1C, G1
 Mixed Mode - UUID7: T12C, TX2C
