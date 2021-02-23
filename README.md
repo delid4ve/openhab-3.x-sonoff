@@ -15,25 +15,45 @@ Mixed Mode - UUID3: Unknown Models
 Mixed Mode - UUID4: Unknown Models
 
 Mixed Mode - UUID5: POW
+
 Mixed Mode - UUID6: T11C, TX1C, G1
+
 Mixed Mode - UUID7: T12C, TX2C
+
 Mixed Mode - UUID8: T13C, TX3C
+
 Mixed Mode - UUID9: Unknown Models
+
 Mixed Mode - UUID15: TH10, TH16
+
 Cloud Only - UUID24: 1 Channel GSM Socket
+
 Cloud Only - UUID27: 1 Channel GSM Socket
+
 Mixed Mode - UUID28: RFBRIDGE (Only sensors currently supported, awaiting remote logs)
+
 Cloud Only - UUID29: 2 Channel GSM Socket
+
 Cloud Only - UUID30: 3 Channel GSM Socket
+
 Cloud Only - UUID31: 4 Channel GSM Socket
+
 Mixed Mode - UUID32: POWR2
+
 Mixed Mode - UUID77: MICRO USB
+
 Cloud Only - UUID81: 1 Channel GSM Socket
+
 Cloud Only - UUID82: 2 Channel GSM Socket
+
 Cloud Only - UUID83: 3 Channel GSM Socket
+
 Cloud Only - UUID84: 4 Channel GSM Socket
+
 Cloud Only - UUID66: Zigbee Bridge
+
 Cloud Only - UUID107: 1 Channel GSM Socket
+
 Cloud Only - UUID2026: Zigbee Motion Sensor
 
 ## Setup
