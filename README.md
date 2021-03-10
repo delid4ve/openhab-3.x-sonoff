@@ -70,9 +70,7 @@ ipaddress: the ip address of your openhab installation without port.  ie: 192.16
 
 accessmode: your choice of mode for the binding
 
-initialize: set to true for first run or when adding new devices to your ewelink account.
-
-The account should now come online and if initialize is set to true will create a cache of all your devices under userdata/sonoff.
+The account should now come online.  Run discovery to initialize devices.
 
 Should any devices not be supported please send @delid4ve the file that is generated for the deviceid you want added.
 
@@ -81,7 +79,7 @@ Should any devices not be supported please send @delid4ve the file that is gener
 
 ## Discovery
 
-Once you have initialized the account, run discovery as normal.
+Once you have initialized the account, run discovery as normal. A cache will be created of all your devices under userdata/sonoff.
 
 All devices support automatic discovery.
 
