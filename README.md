@@ -129,7 +129,7 @@ Please ensure you include the version you are using and any debug log informatio
 
 ```
 Bridge sonoff:account:uniqueName "Sonoff Account" @ "myLocation" 
-[ email="account@example.com", password="myPassword",countryCode="+44",accessmode="mixed",ipaddress="192.168.0.2",initialize="false"] {
+[ email="account@example.com", password="myPassword",countryCode="+44",accessmode="mixed",ipaddress="192.168.0.2"] {
 32      PowR2                               "PowR2"         @   "thingLocation"     [ deviceid="1000bd9fe9",local=false,localPoll=10,consumption=false,consumptionPoll=10] ]
 77      USBSwitch                           "USB Switch"    @   "thingLocation"     [ deviceid="1000dc155b",local=false,localPoll=10 ]	
 
