@@ -143,8 +143,8 @@ Bridge  sonoff:28:uniqueName:RFBridge       "RFBridge"      @   "thingLocation" 
 }
 
 Bridge  sonoff:66:benfleet:ZigbeeBridge     "Zigbee Bridge"	@ "bridgeLocation"	    [ deviceid="1000f60f3d"]	{
-
-	zmotion		MotionSensor	  "Motion Sensor"			@ "sensorLocation"	[ deviceid="a48000a933"]
+	1770		TempSensor	  "Temperature Sensor"			@ "sensorLocation"	[ deviceid="a48000a901"]
+	2026		MotionSensor	  "Motion Sensor"			@ "sensorLocation"	[ deviceid="a48000a933"]
 }
 
 }
@@ -176,7 +176,7 @@ Number			RFBridgeRssi				"Signal Stength"						{channel="sonoff:28:uniqueName:RF
 # RF Sensors
 ```
 DateTime		DoorOpened					"Door Opened"					        {channel="sonoff:rfsensor:uniqueName:RFBridge:DoorContact:rf0External"}
-DateTime		WindowOpened				"Front Door Opened"				        {channel="sonoff:rfsensor:uniqueName:RFBridge:WindowContact:rf0External"}
+DateTime		WindowOpened				"Window Opened"				        {channel="sonoff:rfsensor:uniqueName:RFBridge:WindowContact:rf0External"}
 DateTime		MotionDetected				"Motion Detected"				        {channel="sonoff:rfsensor:uniqueName:RFBridge:PIRSensor:rf0External"}
 ```
 
