@@ -64,16 +64,11 @@ email: your ewelink email address
 
 password: your ewelink password
 
-countryCode: the country code for your location prefixed with a +. i.e. UK: +44, USA: +1
-
-ipaddress: the ip address of your openhab installation without port.  ie: 192.168.1.10 (This is used for local mode and must have multicast enabled)
-
 accessmode: your choice of mode for the binding
 
-The account should now come online.  Run discovery to initialize devices.
+The account should now come online.  Run discovery to initialize devices (this must be done even if using text files as it creates a cache)
 
 Should any devices not be supported please send @delid4ve the file that is generated for the deviceid you want added.
-
 
 * Please note there is a known bug within openhab if you are using text files.  If on changing a config parameter your devices do not come online then please remove the file file and re-add.  If this does not resaolve the issue you may have to remove and re-add the binding.
 
@@ -129,7 +124,7 @@ Please ensure you include the version you are using and any debug log informatio
 
 ```
 Bridge sonoff:account:uniqueName "Sonoff Account" @ "myLocation" 
-[ email="account@example.com", password="myPassword",countryCode="+44",accessmode="mixed",ipaddress="192.168.0.2"] {
+[ email="account@example.com", password="myPassword",accessmode="mixed"] {
 32      PowR2                               "PowR2"         @   "thingLocation"     [ deviceid="1000bd9fe9",local=false,localPoll=10,consumption=false,consumptionPoll=10] ]
 77      USBSwitch                           "USB Switch"    @   "thingLocation"     [ deviceid="1000dc155b",local=false,localPoll=10 ]	
 
