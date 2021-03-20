@@ -117,6 +117,33 @@ https://github.com/delid4ve/openhab-sonoff/issues
 
 Please ensure you include the version you are using and any debug log information that is applicable.  Please also include the file that is created for the device under userdata/sonoff/deviceid.txt
 
+## Channel Types
+
+switch		Switch
+switch0		Switch
+switch1		Switch
+switch2		Switch
+switch3		Switch
+temperature	Number:Temperature
+humidity	Number:Dimensionless
+voltage		Number:ElectricPotential
+current		Number:ElectricCurrent
+power		Number:Power
+todayKwh	Number:Energy
+rssi		Number
+ipaddress	String
+localOnline	String
+cloudOnline	String
+sled		Switch
+zled		Switch
+brightness	Dimmer
+color		Color
+rf sensors	DateTime
+rf buttons	Switch
+
+
+
+
 ## Thing Configuration
 
 * POW / POWR2 Devices support consumption polling
@@ -150,22 +177,22 @@ Bridge  sonoff:66:benfleet:ZigbeeBridge     "Zigbee Bridge"	@ "bridgeLocation"	 
 # Main Devices
 ```
 
-Switch			Switch				        "Switch"				                {channel="sonoff:32:uniqueName:PowR2:switch"}
-Number			Current				        "Current"						        {channel="sonoff:32:uniqueName:PowR2:current"}
-Number			Voltage				        "Voltage"						        {channel="sonoff:32:uniqueName:PowR2:voltage"}
-Number			Power				        "Power"							        {channel="sonoff:32:uniqueName:PowR2:power"}
-Number			Today				        "Energy Usage Today"			        {channel="sonoff:32:uniqueName:PowR2:todayKwh"}
-Number			Yesterday			        "Energy Usage Yesterday"		        {channel="sonoff:32:uniqueName:PowR2:yesterdayKwh"}
-Number			Seven				        "Energy Usage Last Week"		        {channel="sonoff:32:uniqueName:PowR2:sevenKwh"}
-Number			Thirty				        "Energy Usage Last Month"		        {channel="sonoff:32:uniqueName:PowR2:thirtyKwh"}
-Number			Hundred				        "Energy Usage Last Hundred"		        {channel="sonoff:32:uniqueName:PowR2:hundredKwh"}
-String			CloudConnected		        "Cloud Connected"				        {channel="sonoff:32:uniqueName:PowR2:cloudOnline"}
-String			LocalConnected		        "LAN Connected"				            {channel="sonoff:32:uniqueName:PowR2:localOnline"}
-Number			Rssi				        "Signal Stength"				        {channel="sonoff:32:uniqueName:PowR2:rssi"}
+Switch				Switch		"Switch"					{channel="sonoff:32:uniqueName:PowR2:switch"}
+Number:ElectricCurrent		Current	        "Current"					{channel="sonoff:32:uniqueName:PowR2:current"}
+Number:ElectricPotential	Voltage	        "Voltage"					{channel="sonoff:32:uniqueName:PowR2:voltage"}
+Number:Power			Power		"Power"						{channel="sonoff:32:uniqueName:PowR2:power"}
+Number:Energy			Today		"Energy Usage Today"				{channel="sonoff:32:uniqueName:PowR2:todayKwh"}
+Number:Energy			Yesterday	"Energy Usage Yesterday"		        {channel="sonoff:32:uniqueName:PowR2:yesterdayKwh"}
+Number:Energy			Seven		"Energy Usage Last Week"		        {channel="sonoff:32:uniqueName:PowR2:sevenKwh"}
+Number:Energy			Thirty		"Energy Usage Last Month"		        {channel="sonoff:32:uniqueName:PowR2:thirtyKwh"}
+Number:Energy			Hundred		"Energy Usage Last Hundred"		        {channel="sonoff:32:uniqueName:PowR2:hundredKwh"}
+String				CloudConnected	"Cloud Connected"				{channel="sonoff:32:uniqueName:PowR2:cloudOnline"}
+String				LocalConnected	"LAN Connected"				        {channel="sonoff:32:uniqueName:PowR2:localOnline"}
+Number				Rssi		"Signal Stength"				{channel="sonoff:32:uniqueName:PowR2:rssi"}
 
-String			RFBridgeCloudConnected		"Cloud Connected"						{channel="sonoff:28:uniqueName:RFBridge:cloudOnline"}
-String			RFBridgeLANConnected		"LAN Connected"				    		{channel="sonoff:28:uniqueName:RFBridge:localOnline"}
-Number			RFBridgeRssi				"Signal Stength"						{channel="sonoff:28:uniqueName:RFBridge:rssi"}
+String				RFBridgeCloudConnected		"Cloud Connected"		{channel="sonoff:28:uniqueName:RFBridge:cloudOnline"}
+String			RFBridgeLANConnected		"LAN Connected"				{channel="sonoff:28:uniqueName:RFBridge:localOnline"}
+Number			RFBridgeRssi				"Signal Stength"		{channel="sonoff:28:uniqueName:RFBridge:rssi"}
 ```
 
 # RF Sensors
