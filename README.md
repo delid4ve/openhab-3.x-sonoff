@@ -64,9 +64,15 @@ email: your ewelink email address
 
 password: your ewelink password
 
+countryCode: the country code for your location prefixed with a +. i.e. UK: +44, USA: +1
+
+ipaddress: the ip address of your openhab installation without port.  ie: 192.168.1.10 (This is used for local mode and must have multicast enabled)
+
 accessmode: your choice of mode for the binding
 
-The account should now come online.  Run discovery to initialize devices (this must be done even if using text files as it creates a cache)
+initialize: set to true for first run or when adding new devices to your ewelink account.
+
+The account should now come online and if initialize is set to true will create a cache of all your devices under userdata/sonoff.
 
 Should any devices not be supported please send @delid4ve the file that is generated for the deviceid you want added.
 
@@ -74,7 +80,7 @@ Should any devices not be supported please send @delid4ve the file that is gener
 
 ## Discovery
 
-Once you have initialized the account, run discovery as normal. A cache will be created of all your devices under userdata/sonoff.
+Once you have initialized the account, run discovery as normal.
 
 All devices support automatic discovery.
 
@@ -88,7 +94,6 @@ If local mode is supported and once initialized, the device can be blocked by yo
 
 If you are in mixed mode, locally supported devices can be blocked at your firewall and will use local only mode
 
-
 POW/POWR2 in local mode: 
 
 In order to retreive energy data when operating in local only mode there are 2 seperate configuration parameters: (Not required when in LAN Development mode)
@@ -96,7 +101,6 @@ In order to retreive energy data when operating in local only mode there are 2 s
 Enable Local Polling: enable local polling of energy data
 
 Polling Interval for Local Only mode: interval in seconds betwen polls
-
 
 POW/POWR2 Consumption:
 
@@ -117,41 +121,15 @@ https://github.com/delid4ve/openhab-sonoff/issues
 
 Please ensure you include the version you are using and any debug log information that is applicable.  Please also include the file that is created for the device under userdata/sonoff/deviceid.txt
 
-## Channel Types
-
-switch		Switch
-switch0		Switch
-switch1		Switch
-switch2		Switch
-switch3		Switch
-temperature	Number:Temperature
-humidity	Number:Dimensionless
-voltage		Number:ElectricPotential
-current		Number:ElectricCurrent
-power		Number:Power
-todayKwh	Number:Energy
-rssi		Number
-ipaddress	String
-localOnline	String
-cloudOnline	String
-sled		Switch
-zled		Switch
-brightness	Dimmer
-color		Color
-rf sensors	DateTime
-rf buttons	Switch
-
-
-
-
 ## Thing Configuration
 
 * POW / POWR2 Devices support consumption polling
+
 * Devices listed as Local or Mixed Mode support local polling
 
 ```
 Bridge sonoff:account:uniqueName "Sonoff Account" @ "myLocation" 
-[ email="account@example.com", password="myPassword",accessmode="mixed"] {
+[ email="account@example.com", password="myPassword",countryCode="+44",accessmode="mixed",ipaddress="192.168.0.2",initialize="false"] {
 32      PowR2                               "PowR2"         @   "thingLocation"     [ deviceid="1000bd9fe9",local=false,localPoll=10,consumption=false,consumptionPoll=10] ]
 77      USBSwitch                           "USB Switch"    @   "thingLocation"     [ deviceid="1000dc155b",local=false,localPoll=10 ]	
 
@@ -165,8 +143,8 @@ Bridge  sonoff:28:uniqueName:RFBridge       "RFBridge"      @   "thingLocation" 
 }
 
 Bridge  sonoff:66:benfleet:ZigbeeBridge     "Zigbee Bridge"	@ "bridgeLocation"	    [ deviceid="1000f60f3d"]	{
-	1770		TempSensor	  "Temperature Sensor"			@ "sensorLocation"	[ deviceid="a48000a901"]
-	2026		MotionSensor	  "Motion Sensor"			@ "sensorLocation"	[ deviceid="a48000a933"]
+
+	zmotion		MotionSensor	  "Motion Sensor"			@ "sensorLocation"	[ deviceid="a48000a933"]
 }
 
 }
@@ -175,34 +153,37 @@ Bridge  sonoff:66:benfleet:ZigbeeBridge     "Zigbee Bridge"	@ "bridgeLocation"	 
 ## Item Configuration
 
 # Main Devices
+
 ```
 
-Switch				Switch		"Switch"					{channel="sonoff:32:uniqueName:PowR2:switch"}
-Number:ElectricCurrent		Current	        "Current"					{channel="sonoff:32:uniqueName:PowR2:current"}
-Number:ElectricPotential	Voltage	        "Voltage"					{channel="sonoff:32:uniqueName:PowR2:voltage"}
-Number:Power			Power		"Power"						{channel="sonoff:32:uniqueName:PowR2:power"}
-Number:Energy			Today		"Energy Usage Today"				{channel="sonoff:32:uniqueName:PowR2:todayKwh"}
-Number:Energy			Yesterday	"Energy Usage Yesterday"		        {channel="sonoff:32:uniqueName:PowR2:yesterdayKwh"}
-Number:Energy			Seven		"Energy Usage Last Week"		        {channel="sonoff:32:uniqueName:PowR2:sevenKwh"}
-Number:Energy			Thirty		"Energy Usage Last Month"		        {channel="sonoff:32:uniqueName:PowR2:thirtyKwh"}
-Number:Energy			Hundred		"Energy Usage Last Hundred"		        {channel="sonoff:32:uniqueName:PowR2:hundredKwh"}
-String				CloudConnected	"Cloud Connected"				{channel="sonoff:32:uniqueName:PowR2:cloudOnline"}
-String				LocalConnected	"LAN Connected"				        {channel="sonoff:32:uniqueName:PowR2:localOnline"}
-Number				Rssi		"Signal Stength"				{channel="sonoff:32:uniqueName:PowR2:rssi"}
+Switch			Switch				        "Switch"				                {channel="sonoff:32:uniqueName:PowR2:switch"}
+Number			Current				        "Current"						        {channel="sonoff:32:uniqueName:PowR2:current"}
+Number			Voltage				        "Voltage"						        {channel="sonoff:32:uniqueName:PowR2:voltage"}
+Number			Power				        "Power"							        {channel="sonoff:32:uniqueName:PowR2:power"}
+Number			Today				        "Energy Usage Today"			        {channel="sonoff:32:uniqueName:PowR2:todayKwh"}
+Number			Yesterday			        "Energy Usage Yesterday"		        {channel="sonoff:32:uniqueName:PowR2:yesterdayKwh"}
+Number			Seven				        "Energy Usage Last Week"		        {channel="sonoff:32:uniqueName:PowR2:sevenKwh"}
+Number			Thirty				        "Energy Usage Last Month"		        {channel="sonoff:32:uniqueName:PowR2:thirtyKwh"}
+Number			Hundred				        "Energy Usage Last Hundred"		        {channel="sonoff:32:uniqueName:PowR2:hundredKwh"}
+String			CloudConnected		        "Cloud Connected"				        {channel="sonoff:32:uniqueName:PowR2:cloudOnline"}
+String			LocalConnected		        "LAN Connected"				            {channel="sonoff:32:uniqueName:PowR2:localOnline"}
+Number			Rssi				        "Signal Stength"				        {channel="sonoff:32:uniqueName:PowR2:rssi"}
 
-String				RFBridgeCloudConnected		"Cloud Connected"		{channel="sonoff:28:uniqueName:RFBridge:cloudOnline"}
-String			RFBridgeLANConnected		"LAN Connected"				{channel="sonoff:28:uniqueName:RFBridge:localOnline"}
-Number			RFBridgeRssi				"Signal Stength"		{channel="sonoff:28:uniqueName:RFBridge:rssi"}
+String			RFBridgeCloudConnected		"Cloud Connected"						{channel="sonoff:28:uniqueName:RFBridge:cloudOnline"}
+String			RFBridgeLANConnected		"LAN Connected"				    		{channel="sonoff:28:uniqueName:RFBridge:localOnline"}
+Number			RFBridgeRssi				"Signal Stength"						{channel="sonoff:28:uniqueName:RFBridge:rssi"}
 ```
 
 # RF Sensors
+
 ```
 DateTime		DoorOpened					"Door Opened"					        {channel="sonoff:rfsensor:uniqueName:RFBridge:DoorContact:rf0External"}
-DateTime		WindowOpened				"Window Opened"				        {channel="sonoff:rfsensor:uniqueName:RFBridge:WindowContact:rf0External"}
+DateTime		WindowOpened				"Front Door Opened"				        {channel="sonoff:rfsensor:uniqueName:RFBridge:WindowContact:rf0External"}
 DateTime		MotionDetected				"Motion Detected"				        {channel="sonoff:rfsensor:uniqueName:RFBridge:PIRSensor:rf0External"}
 ```
 
 # RF Remotes
+
 ```
 Switch  		Remote1Arm					"Arm alarm"					            {channel="sonoff:rfremote2:uniqueName:RFBridge:Remote1:button0"}
 Switch  		Remote1Disarm				"Disarm alarm"					        {channel="sonoff:rfremote2:uniqueName:RFBridge:Remote1:button1"}
@@ -219,6 +200,7 @@ DateTime		Remote1Button2Internal		"Disarm Alarm Triggered By Openhab"		{channel=
 ```
 
 # Zigbee Sensor
+
 ```
 Switch			MotionDetected		        "Motion Detected"						{channel="sonoff:zmotion:uniqueName:ZigbeeBridge:MotionSensor:motion"}
 Number			MotionSensorBattery	        "PIR Battery Level"						{channel="sonoff:zmotion:uniqueName:ZigbeeBridge:MotionSensor:battery"}

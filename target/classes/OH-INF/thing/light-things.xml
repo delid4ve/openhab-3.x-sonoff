@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="sonoff"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
+
+	<thing-type id="59">
+		<supported-bridge-type-refs>
+			<bridge-type-ref id="account"/>
+		</supported-bridge-type-refs>
+		<label>Color LED Controller</label>
+		<description>Color LED Controller</description>
+		<channels>
+			<channel id="switch" typeId="switch"/>
+			<channel id="color" typeId="color"/>
+			<channel id="brightness" typeId="brightness"/>
+			<channel id="mode" typeId="mode"/>
+			<channel id="sensitivity" typeId="sensitivity"/>
+			<channel id="speed" typeId="speed"/>
+			<channel id="musicSwitch" typeId="musicSwitch"/>
+			<channel id="cloudOnline" typeId="cloudOnline"/>
+			<channel id="rssi" typeId="rssi"/>
+			<channel id="sled" typeId="sled"/>
+		</channels>
+		<config-description>
+			<parameter name="deviceid" type="text" required="true">
+				<label>Device ID</label>
+				<description>Device ID</description>
+			</parameter>
+		</config-description>
+	</thing-type>
+
+	<thing-type id="104">
+		<supported-bridge-type-refs>
+			<bridge-type-ref id="account"/>
+		</supported-bridge-type-refs>
+		<label>RGB-CCT Bulb (B05)</label>
+		<description>RGB-CCT Bulb (B05)</description>
+		<channels>
+			<channel id="switch" typeId="switch"/>
+			<channel id="lightMode" typeId="lightMode"/>
+			<channel id="brightness" typeId="brightness"/>
+			<channel id="colorTemperature" typeId="colorTemperature"/>
+			<channel id="color" typeId="color"/>
+			<channel id="localOnline" typeId="localOnline"/>
+			<channel id="cloudOnline" typeId="cloudOnline"/>
+			<channel id="ipaddress" typeId="ipaddress"/>
+		</channels>
+		<config-description>
+			<parameter name="deviceid" type="text" required="true">
+				<label>Device ID</label>
+				<description>Device ID</description>
+			</parameter>
+		</config-description>
+	</thing-type>
+
+</thing:thing-descriptions>

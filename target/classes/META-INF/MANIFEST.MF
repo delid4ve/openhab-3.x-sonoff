@@ -1,0 +1,59 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.openhab.binding.sonoff
+Bnd-LastModified: 1618155933755
+Bundle-Description: This project contains the official add-ons of open
+ HAB
+Bundle-Developers: openhab;email="info@openhab.org";name=openHAB;organ
+ ization=openHAB;organizationUrl="https://www.openHAB.org"
+Bundle-DocURL: https://github.com/openhab/infrastructure/org.openhab.a
+ ddons.reactor/org.openhab.addons.reactor.bundles/org.openhab.binding.
+ sonoff
+Bundle-License: "Eclipse Public License 2.0";link="https://www.eclipse
+ .org/legal/epl-2.0/"
+Bundle-ManifestVersion: 2
+Bundle-Name: openHAB Add-ons :: Bundles :: sonoff Binding
+Bundle-SCM: url="https://github.com/openhab/openhab-addons/org.openhab
+ .addons.reactor.bundles/org.openhab.binding.sonoff",connection="scm:g
+ it:https://github.com/openhab/openhab-addons.git/org.openhab.addons.r
+ eactor.bundles/org.openhab.binding.sonoff",developer-connection="scm:
+ git:https://github.com/openhab/openhab-addons.git/org.openhab.addons.
+ reactor.bundles/org.openhab.binding.sonoff",tag=HEAD
+Bundle-SymbolicName: org.openhab.binding.sonoff
+Bundle-Vendor: openHAB.org
+Bundle-Version: 3.1.0.202104111545
+Created-By: 11.0.9 (Oracle Corporation)
+Import-Package: org.openhab.core,org.openhab.core.config.core,org.open
+ hab.core.config.discovery,org.openhab.core.io.net.http,org.openhab.co
+ re.library.types,org.openhab.core.library.unit,org.openhab.core.thing
+ ,org.openhab.core.thing.binding,org.openhab.core.types,com.google.gso
+ n;version="[2.8,3)",com.google.gson.annotations;version="[2.8,3)",jav
+ ax.crypto,javax.crypto.spec,javax.jmdns;version="[3.5,4)",javax.measu
+ re;version="[1.0,2)",javax.measure.quantity;version="[1.0,2)",org.ecl
+ ipse.jetty.client;version="[9.4,10)",org.eclipse.jetty.client.api;ver
+ sion="[9.4,10)",org.eclipse.jetty.client.util;version="[9.4,10)",org.
+ eclipse.jetty.websocket.api;version="[9.4,10)",org.eclipse.jetty.webs
+ ocket.api.annotations;version="[9.4,10)",org.eclipse.jetty.websocket.
+ client;version="[9.4,10)",org.slf4j;version="[1.7,2)"
+Private-Package: OH-INF.binding,OH-INF.i18n,OH-INF.thing,org.openhab.b
+ inding.sonoff.internal,org.openhab.binding.sonoff.internal.communicat
+ ion,org.openhab.binding.sonoff.internal.config,org.openhab.binding.so
+ noff.internal.connection,org.openhab.binding.sonoff.internal.discover
+ y,org.openhab.binding.sonoff.internal.dto.commands,org.openhab.bindin
+ g.sonoff.internal.dto.requests,org.openhab.binding.sonoff.internal.dt
+ o.responses,org.openhab.binding.sonoff.internal.handler
+Provide-Capability: osgi.service;objectClass:List<String>="org.openhab
+ .binding.sonoff.internal.discovery.SonoffDiscoveryService";uses:="org
+ .openhab.binding.sonoff.internal.discovery",osgi.service;objectClass:
+ List<String>="org.openhab.core.thing.binding.ThingHandlerFactory";use
+ s:="org.openhab.core.thing.binding"
+Require-Capability: osgi.service;filter:="(objectClass=org.openhab.cor
+ e.io.net.http.HttpClientFactory)";effective:=active,osgi.service;filt
+ er:="(objectClass=org.openhab.core.io.net.http.WebSocketFactory)";eff
+ ective:=active,osgi.extender;filter:="(&(osgi.extender=osgi.component
+ )(version>=1.4.0)(!(version>=2.0.0)))",osgi.ee;filter:="(&(osgi.ee=Ja
+ vaSE)(version=11))"
+Service-Component: OSGI-INF/org.openhab.binding.sonoff.internal.Sonoff
+ HandlerFactory.xml,OSGI-INF/org.openhab.binding.sonoff.internal.disco
+ very.SonoffDiscoveryService.xml
+Tool: Bnd-5.2.0.202010142003
+

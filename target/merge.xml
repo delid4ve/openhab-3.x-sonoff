@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><sca xmlns:pmdns="http://pmd.sourceforge.net/report/2.0.0" xmlns:functx="http://www.functx.com">
+   <file name="org.openhab.binding.sonoff.internal.connection.SonoffLanConnection.java">
+      <message tool="pmd" line="122" message="&#xA;Avoid empty if statements&#xA;" priority="3" rule="EmptyIfStmt" rule_url="https://pmd.github.io/pmd-6.22.0/pmd_rules_java_errorprone.html#emptyifstmt" category="error prone"/>
+   </file>
+<file name="org.openhab.binding.sonoff.internal.communication.SonoffCommunicationManager.java">
+      <message tool="checkstyle" line="135" message="Remove empty line before closing brace" priority="3" rule="NoEmptyLineSeparatorCheck" category="style"/>
+      <message tool="checkstyle" line="305" message="Remove empty line after opening brace" priority="3" rule="NoEmptyLineSeparatorCheck" category="style"/>
+   </file>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <file name="org.openhab.binding.sonoff.internal.SonoffCacheProvider.java">
+      <message tool="findbugs" line="" message="&#xA;      Logger should be non-static field. Change this field (logger) to non-static field.&#xA;    " priority="3" rule="Logger should be non-static field (SLF4J)" category="bad practice" rule_id="SLF4J_LOGGER_SHOULD_BE_NON_STATIC"/>
+   <message tool="checkstyle" line="46" message="Name 'logger' must match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'." priority="3" rule="ConstantNameCheck" category="style"/>
+   </file>
+   <file name="org.openhab.binding.sonoff.internal.handler.SonoffDeviceState.java">
+      <message tool="findbugs" line="35" message="&#xA;      Illegal class is passed to LoggerFactory#getLogger(Class). It should be one of [org.openhab.binding.sonoff.internal.handler.SonoffDeviceState].&#xA;    " priority="1" rule="Illegal class is passed to LoggerFactory#getLogger(Class) (SLF4J)" category="correctness" rule_id="SLF4J_ILLEGAL_PASSED_CLASS"/>
+   </file>
+   <file name="org.openhab.binding.sonoff.internal.handler.SonoffRGBCCTHandler.java">
+      <message tool="findbugs" line="39" message="&#xA;      Illegal class is passed to LoggerFactory#getLogger(Class). It should be one of [org.openhab.binding.sonoff.internal.handler.SonoffRGBCCTHandler].&#xA;    " priority="1" rule="Illegal class is passed to LoggerFactory#getLogger(Class) (SLF4J)" category="correctness" rule_id="SLF4J_ILLEGAL_PASSED_CLASS"/>
+   </file>
+</sca>
