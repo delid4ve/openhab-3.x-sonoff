@@ -64,15 +64,9 @@ email: your ewelink email address
 
 password: your ewelink password
 
-countryCode: the country code for your location prefixed with a +. i.e. UK: +44, USA: +1
+accessmode: your choice of mode for the binding (local,cloud,mixed)
 
-ipaddress: the ip address of your openhab installation without port.  ie: 192.168.1.10 (This is used for local mode and must have multicast enabled)
-
-accessmode: your choice of mode for the binding
-
-initialize: set to true for first run or when adding new devices to your ewelink account.
-
-The account should now come online and if initialize is set to true will create a cache of all your devices under userdata/sonoff.
+The account should now come online.  Run discovery to create the cache required for all devices, you can manually add as text files once this is complete.
 
 Should any devices not be supported please send @delid4ve the file that is generated for the deviceid you want added.
 
@@ -82,7 +76,7 @@ Should any devices not be supported please send @delid4ve the file that is gener
 
 Once you have initialized the account, run discovery as normal.
 
-All devices support automatic discovery.
+All devices support automatic discovery and this must be run even if using text based files in order to create a cache.
 
 For Sub devices, i.e sensors connected to an RF Bridge or Zigbee bridge, add the main device and then run discovery again to find any connected devices.
 
@@ -129,7 +123,7 @@ Please ensure you include the version you are using and any debug log informatio
 
 ```
 Bridge sonoff:account:uniqueName "Sonoff Account" @ "myLocation" 
-[ email="account@example.com", password="myPassword",countryCode="+44",accessmode="mixed",ipaddress="192.168.0.2",initialize="false"] {
+[ email="account@example.com", password="myPassword",accessmode="mixed"] {
 32      PowR2                               "PowR2"         @   "thingLocation"     [ deviceid="1000bd9fe9",local=false,localPoll=10,consumption=false,consumptionPoll=10] ]
 77      USBSwitch                           "USB Switch"    @   "thingLocation"     [ deviceid="1000dc155b",local=false,localPoll=10 ]	
 
