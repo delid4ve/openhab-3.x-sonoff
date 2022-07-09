@@ -1,7 +1,0 @@
-class java/net/URI
-create
- (Ljava/lang/String;)Ljava/net/URI;
- (L1java/lang/String;)L1java/net/URI;
-toString
- ()Ljava/lang/String;
- ()L1java/lang/String;

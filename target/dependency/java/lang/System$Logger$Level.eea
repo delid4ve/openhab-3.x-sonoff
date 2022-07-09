@@ -1,4 +1,0 @@
-class java/lang/System$Logger$Level
-getName
- ()Ljava/lang/String;
- ()L1java/lang/String;
