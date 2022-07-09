@@ -25,8 +25,16 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 @NonNullByDefault
 public class SonoffCommandMessageUtilities {
 
-    public static final String APPID = "oeVkj2lYFGnJu5XUtWisfW4utiN4u9Mq";
-    public static final String APPSECRET = "6Nz4n0xA8s8qdxQf2GqurZj2Fs55FUvM";
+    // https://github.com/AlexxIT/SonoffLAN/blob/master/custom_components/sonoff/core/ewelink/cloud.py : 43
+    /*
+    APP = [
+        # ("oeVkj2lYFGnJu5XUtWisfW4utiN4u9Mq", "6Nz4n0xA8s8qdxQf2GqurZj2Fs55FUvM"),
+        ("KOBxGJna5qkk3JLXw3LHLX3wSNiPjAVi", "4v0sv6X5IM2ASIBiNDj6kGmSfxo40w7n"),
+        ("R8Oq3y0eSZSYdKccHlrQzT1ACCOUT9Gv", "1ve5Qk9GXfUhKAn1svnKwpAlxXkMarru")
+    ]
+    */
+    public static final String APPID = "KOBxGJna5qkk3JLXw3LHLX3wSNiPjAVi";
+    public static final String APPSECRET = "4v0sv6X5IM2ASIBiNDj6kGmSfxo40w7n";
     private static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     public static final Integer VERSION = 8;
     private static SecureRandom rnd = new SecureRandom();
