@@ -93,36 +93,39 @@ public class SonoffDeviceState {
     }
 
     private void setParameters(JsonObject params) {
+
         // Switches
-        if (params.get("switch") != null) {
+        if (params.has("switch")) {
             parameters.setSwitch0(params.get("switch").getAsString());
-        } else {
-            if (params.get("switches") != null) {
-                JsonArray switches = params.getAsJsonArray("switches");
-                if (switches.get(0) != null) {
-                    parameters.setSwitch0(
-                            params.getAsJsonArray("switches").get(0).getAsJsonObject().get("switch").getAsString());
-                }
-                if (switches.get(1) != null) {
-                    if (switches.get(1).getAsJsonObject().get("switch") != null) {
-                        parameters.setSwitch1(
-                                params.getAsJsonArray("switches").get(1).getAsJsonObject().get("switch").getAsString());
-                    }
-                }
-                if (switches.get(2) != null) {
-                    if (switches.get(2).getAsJsonObject().get("switch") != null) {
-                        parameters.setSwitch2(
-                                params.getAsJsonArray("switches").get(2).getAsJsonObject().get("switch").getAsString());
-                    }
-                }
-                if (switches.get(3) != null) {
-                    if (switches.get(3).getAsJsonObject().get("switch") != null) {
-                        parameters.setSwitch3(
-                                params.getAsJsonArray("switches").get(3).getAsJsonObject().get("switch").getAsString());
+        } else if (params.has("switches")) {
+            JsonArray switches = params.getAsJsonArray("switches");
+
+            for (int i = 0; i < switches.size(); i++) {
+                JsonObject switchObj = switches.get(i).getAsJsonObject();
+
+                if (switchObj.has("switch")) {
+                    String switchState = switchObj.get("switch").getAsString();
+
+                    switch (i) {
+                        case 0:
+                            parameters.setSwitch0(switchState);
+                            break;
+                        case 1:
+                            parameters.setSwitch1(switchState);
+                            break;
+                        case 2:
+                            parameters.setSwitch2(switchState);
+                            break;
+                        case 3:
+                            parameters.setSwitch3(switchState);
+                            break;
+                        default:
+                            logger.warn("Sonoff addon support only devices with at most 4 switches, ignoring switch: " + i);
                     }
                 }
             }
         }
+
         // Electric
         if (params.get("power") != null) {
             parameters.setPower(params.get("power").getAsString());
@@ -139,6 +142,7 @@ public class SonoffDeviceState {
         if (params.get("battery") != null) {
             parameters.setBattery(params.get("battery").getAsDouble());
         }
+
         // Energy
         if (params.get("hundredDaysKwhData") != null) {
             String kwhData = params.get("hundredDaysKwhData").getAsString();
@@ -213,11 +217,11 @@ public class SonoffDeviceState {
             }
         } else {
             if (params.get("temperature") != null) {
-                parameters.setTemperature(Double.valueOf((params.get("temperature").getAsInt() / 100)));
+                parameters.setTemperature(Double.valueOf(params.get("temperature").getAsInt() / 100));
             }
 
             if (params.get("humidity") != null) {
-                parameters.setHumidity(Double.valueOf((params.get("humidity").getAsInt() / 100)));
+                parameters.setHumidity(Double.valueOf(params.get("humidity").getAsInt() / 100));
             }
         }
 
@@ -383,7 +387,7 @@ public class SonoffDeviceState {
     }
 
     public Map<String, String> getProperties() {
-        Map<String, String> properties = new HashMap<String, String>();
+        Map<String, String> properties = new HashMap<>();
         properties.put("Name", name);
         properties.put("Brand", brand);
         properties.put("Model", model);
