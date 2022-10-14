@@ -18,6 +18,9 @@
 			<channel id="rssi" typeId="rssi"/>
 			<channel id="sled" typeId="sled"/>
 		</channels>
+		
+		<representation-property>deviceid</representation-property>
+		
 		<config-description>
 			<parameter name="deviceid" type="text" required="true">
 				<label>Device ID</label>
@@ -41,6 +44,9 @@
 			<channel id="rssi" typeId="rssi"/>
 			<channel id="sled" typeId="sled"/>
 		</channels>
+		
+		<representation-property>deviceid</representation-property>
+		
 		<config-description>
 			<parameter name="deviceid" type="text" required="true">
 				<label>Device ID</label>
@@ -65,6 +71,9 @@
 			<channel id="rssi" typeId="rssi"/>
 			<channel id="sled" typeId="sled"/>
 		</channels>
+		
+		<representation-property>deviceid</representation-property>
+		
 		<config-description>
 			<parameter name="deviceid" type="text" required="true">
 				<label>Device ID</label>
@@ -90,6 +99,9 @@
 			<channel id="rssi" typeId="rssi"/>
 			<channel id="sled" typeId="sled"/>
 		</channels>
+		
+		<representation-property>deviceid</representation-property>
+		
 		<config-description>
 			<parameter name="deviceid" type="text" required="true">
 				<label>Device ID</label>
@@ -118,6 +130,9 @@
 			<channel id="rssi" typeId="rssi"/>
 			<channel id="sled" typeId="sled"/>
 		</channels>
+		
+		<representation-property>deviceid</representation-property>
+		
 		<config-description>
 			<parameter name="deviceid" type="text" required="true">
 				<label>Device ID</label>
@@ -166,6 +181,9 @@
 			<channel id="rssi" typeId="rssi"/>
 			<channel id="sled" typeId="sled"/>
 		</channels>
+		
+		<representation-property>deviceid</representation-property>
+		
 		<config-description>
 			<parameter name="deviceid" type="text" required="true">
 				<label>Device ID</label>
@@ -189,6 +207,9 @@
 			<channel id="rssi" typeId="rssi"/>
 			<channel id="sled" typeId="sled"/>
 		</channels>
+		
+		<representation-property>deviceid</representation-property>
+		
 		<config-description>
 			<parameter name="deviceid" type="text" required="true">
 				<label>Device ID</label>
@@ -213,6 +234,9 @@
 			<channel id="rssi" typeId="rssi"/>
 			<channel id="sled" typeId="sled"/>
 		</channels>
+		
+		<representation-property>deviceid</representation-property>
+		
 		<config-description>
 			<parameter name="deviceid" type="text" required="true">
 				<label>Device ID</label>
@@ -238,6 +262,9 @@
 			<channel id="rssi" typeId="rssi"/>
 			<channel id="sled" typeId="sled"/>
 		</channels>
+		
+		<representation-property>deviceid</representation-property>
+		
 		<config-description>
 			<parameter name="deviceid" type="text" required="true">
 				<label>Device ID</label>
@@ -258,6 +285,9 @@
 			<channel id="rssi" typeId="rssi"/>
 			<channel id="sled" typeId="sled"/>
 		</channels>
+		
+		<representation-property>deviceid</representation-property>
+		
 		<config-description>
 			<parameter name="deviceid" type="text" required="true">
 				<label>Device ID</label>
@@ -283,6 +313,9 @@
 			<channel id="rssi" typeId="rssi"/>
 			<channel id="sled" typeId="sled"/>
 		</channels>
+		
+		<representation-property>deviceid</representation-property>
+		
 		<config-description>
 			<parameter name="deviceid" type="text" required="true">
 				<label>Device ID</label>
@@ -303,6 +336,9 @@
 			<channel id="rssi" typeId="rssi"/>
 			<channel id="sled" typeId="sled"/>
 		</channels>
+		
+		<representation-property>deviceid</representation-property>
+		
 		<config-description>
 			<parameter name="deviceid" type="text" required="true">
 				<label>Device ID</label>
@@ -323,6 +359,9 @@
 			<channel id="rssi" typeId="rssi"/>
 			<channel id="sled" typeId="sled"/>
 		</channels>
+		
+		<representation-property>deviceid</representation-property>
+		
 		<config-description>
 			<parameter name="deviceid" type="text" required="true">
 				<label>Device ID</label>
@@ -344,6 +383,9 @@
 			<channel id="rssi" typeId="rssi"/>
 			<channel id="sled" typeId="sled"/>
 		</channels>
+		
+		<representation-property>deviceid</representation-property>
+		
 		<config-description>
 			<parameter name="deviceid" type="text" required="true">
 				<label>Device ID</label>
@@ -366,6 +408,9 @@
 			<channel id="rssi" typeId="rssi"/>
 			<channel id="sled" typeId="sled"/>
 		</channels>
+		
+		<representation-property>deviceid</representation-property>
+		
 		<config-description>
 			<parameter name="deviceid" type="text" required="true">
 				<label>Device ID</label>
@@ -389,6 +434,9 @@
 			<channel id="rssi" typeId="rssi"/>
 			<channel id="sled" typeId="sled"/>
 		</channels>
+		
+		<representation-property>deviceid</representation-property>
+		
 		<config-description>
 			<parameter name="deviceid" type="text" required="true">
 				<label>Device ID</label>
@@ -419,6 +467,9 @@
 			<channel id="rssi" typeId="rssi"/>
 			<channel id="sled" typeId="sled"/>
 		</channels>
+		
+		<representation-property>deviceid</representation-property>
+		
 		<config-description>
 			<parameter name="deviceid" type="text" required="true">
 				<label>Device ID</label>
@@ -467,6 +518,9 @@
 			<channel id="rssi" typeId="rssi"/>
 			<channel id="sled" typeId="sled"/>
 		</channels>
+		
+		<representation-property>deviceid</representation-property>
+		
 		<config-description>
 			<parameter name="deviceid" type="text" required="true">
 				<label>Device ID</label>
@@ -502,6 +556,9 @@
 			<channel id="rssi" typeId="rssi"/>
 			<channel id="sled" typeId="sled"/>
 		</channels>
+		
+		<representation-property>deviceid</representation-property>
+		
 		<config-description>
 			<parameter name="deviceid" type="text" required="true">
 				<label>Device ID</label>
@@ -535,6 +592,9 @@
 			<channel id="rssi" typeId="rssi"/>
 			<channel id="sled" typeId="sled"/>
 		</channels>
+		
+		<representation-property>deviceid</representation-property>
+		
 		<config-description>
 			<parameter name="deviceid" type="text" required="true">
 				<label>Device ID</label>
@@ -556,6 +616,9 @@
 			<channel id="rssi" typeId="rssi"/>
 			<channel id="sled" typeId="sled"/>
 		</channels>
+		
+		<representation-property>deviceid</representation-property>
+		
 		<config-description>
 			<parameter name="deviceid" type="text" required="true">
 				<label>Device ID</label>
@@ -578,6 +641,9 @@
 			<channel id="rssi" typeId="rssi"/>
 			<channel id="sled" typeId="sled"/>
 		</channels>
+		
+		<representation-property>deviceid</representation-property>
+		
 		<config-description>
 			<parameter name="deviceid" type="text" required="true">
 				<label>Device ID</label>
@@ -601,6 +667,9 @@
 			<channel id="rssi" typeId="rssi"/>
 			<channel id="sled" typeId="sled"/>
 		</channels>
+		
+		<representation-property>deviceid</representation-property>
+		
 		<config-description>
 			<parameter name="deviceid" type="text" required="true">
 				<label>Device ID</label>
@@ -621,6 +690,9 @@
 			<channel id="rssi" typeId="rssi"/>
 			<channel id="sled" typeId="sled"/>
 		</channels>
+		
+		<representation-property>deviceid</representation-property>
+		
 		<config-description>
 			<parameter name="deviceid" type="text" required="true">
 				<label>Device ID</label>
@@ -643,6 +715,9 @@
 			<channel id="ipaddress" typeId="ipaddress"/>
 			<channel id="rssi" typeId="rssi"/>
 		</channels>
+		
+		<representation-property>deviceid</representation-property>
+		
 		<config-description>
 			<parameter name="deviceid" type="text" required="true">
 				<label>Device ID</label>

@@ -104,6 +104,8 @@ public class SonoffCommunicationManager implements Runnable, SonoffConnectionMan
         try {
             // Get the first message in the queue
             final @Nullable SonoffCommandMessage message = queue.take();
+            logger.debug("{} messages remaining in queue", queue.size());
+            
             if (message.getSequence().equals(0L)) {
                 message.setSequence();
             }
@@ -154,12 +156,12 @@ public class SonoffCommunicationManager implements Runnable, SonoffConnectionMan
             if (running) {
                 message.setSequence();
                 queue.put(message);
-                logger.debug("Added a message to the queue");
+                logger.debug("Added a message to the queue, {} messages in queue", queue.size());
             } else {
                 logger.info("Message not added to queue as we are shutting down");
             }
         } catch (InterruptedException e) {
-            logger.error("Error adding command to queue:{}", e.getMessage());
+            logger.error("Error adding command to queue: {}", e.getMessage());
         }
     }
 
