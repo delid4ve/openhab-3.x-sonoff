@@ -39,25 +39,26 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 /**
- * The {@link SonoffCommunicationManager} provides a sequential queue for outgoing messages
- * accross connections and allows for retrying when messages are not delivered
- * correctly
+ * The {@link SonoffCommunicationManager} provides a sequential queue for outgoing messages accross connections and
+ * allows for retrying when messages are not delivered correctly
  *
  * @author David Murton - Initial contribution
  */
 @NonNullByDefault
 public class SonoffCommunicationManager implements Runnable, SonoffConnectionManagerListener {
 
+    private static final int QUEUE_SIZE = 100;
+
     private final Logger logger = LoggerFactory.getLogger(SonoffCommunicationManager.class);
     // Queue Utilities
     // Map of message retry attempts
-    private final ConcurrentMap<Long, CountDownLatch> latchMap = new ConcurrentHashMap<Long, CountDownLatch>();
+    private final ConcurrentMap<Long, CountDownLatch> latchMap = new ConcurrentHashMap<>();
     // Queue of messages to send
-    private final BlockingDeque<SonoffCommandMessage> queue = new LinkedBlockingDeque<SonoffCommandMessage>();
+    private final BlockingDeque<SonoffCommandMessage> queue = new LinkedBlockingDeque<>(QUEUE_SIZE);
     // Map of Integers so we can count retry attempts.
-    private final ConcurrentMap<Long, Integer> retryCountMap = new ConcurrentHashMap<Long, Integer>();
+    private final ConcurrentMap<Long, Integer> retryCountMap = new ConcurrentHashMap<>();
     // Map of our message types so we can process them correctly
-    private final ConcurrentMap<Long, String> messageTypes = new ConcurrentHashMap<Long, String>();
+    private final ConcurrentMap<Long, String> messageTypes = new ConcurrentHashMap<>();
     // Timeout
     private final int timeoutForOkMessagesMs = 1000;
     // Boolean to indicate if we are running
@@ -105,7 +106,7 @@ public class SonoffCommunicationManager implements Runnable, SonoffConnectionMan
             // Get the first message in the queue
             final @Nullable SonoffCommandMessage message = queue.take();
             logger.debug("{} messages remaining in queue", queue.size());
-            
+
             if (message.getSequence().equals(0L)) {
                 message.setSequence();
             }
@@ -174,7 +175,6 @@ public class SonoffCommunicationManager implements Runnable, SonoffConnectionMan
 
     /**
      * Forward messages to the appropriate connection
-     *
      */
     public void sendMessage(SonoffCommandMessage message) {
         // Send Api Device requests
@@ -228,7 +228,6 @@ public class SonoffCommunicationManager implements Runnable, SonoffConnectionMan
 
     /**
      * Processes and forwards incoming states to the appropriate device handler
-     *
      */
     private synchronized void processState(JsonObject device, Boolean encrypted) {
         String deviceid = device.get("deviceid").getAsString();
