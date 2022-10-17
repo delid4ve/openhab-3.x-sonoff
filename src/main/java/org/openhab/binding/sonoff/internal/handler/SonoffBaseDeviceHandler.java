@@ -28,9 +28,11 @@ import org.openhab.core.thing.ThingStatus;
 import org.openhab.core.thing.ThingStatusDetail;
 import org.openhab.core.thing.ThingStatusInfo;
 import org.openhab.core.thing.binding.BaseThingHandler;
-import org.openhab.core.types.*;
+import org.openhab.core.types.Command;
+import org.openhab.core.types.RefreshType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.xml.sax.HandlerBase;
 
 /**
  * The {@link HandlerBase} allows the handling of commands and updates to Devices
@@ -76,12 +78,14 @@ public abstract class SonoffBaseDeviceHandler extends BaseThingHandler implement
                         "This device has not been initilized, please run discovery");
                 return;
             } else {
-                // Check whether we are a local only device
-                if (SonoffBindingConstants.LAN_IN.contains(state.getUiid())) {
-                    isLocalIn = true;
-                }
-                if (SonoffBindingConstants.LAN_OUT.contains(state.getUiid())) {
-                    this.isLocalOut = true;
+                if (!account.getMode().equals("cloud") && config.local == true) {
+                    // Check whether we are a local only device
+                    if (SonoffBindingConstants.LAN_IN.contains(state.getUiid())) {
+                        isLocalIn = true;
+                    }
+                    if (SonoffBindingConstants.LAN_OUT.contains(state.getUiid())) {
+                        this.isLocalOut = true;
+                    }
                 }
 
                 if (account.getMode().equals("local") && !isLocalIn) {
@@ -237,5 +241,6 @@ public abstract class SonoffBaseDeviceHandler extends BaseThingHandler implement
 
     public abstract void cancelTasks();
 
+    @Override
     public abstract void updateDevice(SonoffDeviceState newDevice);
 }
