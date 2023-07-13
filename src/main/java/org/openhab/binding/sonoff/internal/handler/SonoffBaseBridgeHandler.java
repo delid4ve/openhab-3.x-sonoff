@@ -122,12 +122,14 @@ public abstract class SonoffBaseBridgeHandler extends BaseBridgeHandler implemen
         SonoffAccountHandler account = this.account;
         if (account != null) {
             if (bridgeStatusInfo.getStatus().equals(ThingStatus.ONLINE)) {
-                if (isLocalIn) {
-                    account.addLanService(deviceid);
-                    // account.requestLanUpdate(deviceid);
+                if (!getThing().getStatus().equals(ThingStatus.ONLINE)) {
+                    if (isLocalIn) {
+                        account.addLanService(deviceid);
+                        // account.requestLanUpdate(deviceid);
+                    }
+                    startTasks();
                 }
                 account.queueMessage(new SonoffCommandMessage(deviceid));
-                startTasks();
                 updateStatus();
             } else {
                 if (isLocalIn) {
@@ -172,7 +174,7 @@ public abstract class SonoffBaseBridgeHandler extends BaseBridgeHandler implemen
     }
 
     public void queueMessage(SonoffCommandMessage message) {
-        logger.debug("Sonoff - Command Payload:{}", message.getParams());
+        logger.debug("Sonoff - Command Payload: {}", message.getParams());
         SonoffAccountHandler account = this.account;
         if (account != null) {
             account.queueMessage(message);

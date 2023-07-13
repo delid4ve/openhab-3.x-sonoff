@@ -32,8 +32,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 /**
- * The {@link SonoffWebSocketConnection} class is the websocket Connection to the Ewelink API to
- * enable streaming data and uses the shared websocketClient
+ * The {@link SonoffWebSocketConnection} class is the websocket Connection to the Ewelink API to enable streaming data
+ * and uses the shared websocketClient
  *
  * @author David Murton - Initial contribution
  */
@@ -154,6 +154,7 @@ public class SonoffWebSocketConnection {
 
     @OnWebSocketError
     public void onError(Throwable cause) {
+        logger.error("Websocket Error: " + cause.getMessage(), cause);
         String reason = cause.getMessage();
         if (reason != null) {
             onClose(0, reason);

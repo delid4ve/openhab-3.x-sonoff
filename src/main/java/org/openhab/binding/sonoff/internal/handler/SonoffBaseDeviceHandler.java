@@ -122,17 +122,19 @@ public abstract class SonoffBaseDeviceHandler extends BaseThingHandler implement
         SonoffAccountHandler account = this.account;
         if (account != null) {
             if (bridgeStatusInfo.getStatus().equals(ThingStatus.ONLINE)) {
-                if (isLocalIn) {
-                    logger.debug("Requesting local update for {}", this.deviceid);
-                    account.addLanService(deviceid);
-                    // account.requestLanUpdate(deviceid);
-                    // account.requestLanUpdate();
+                if (!getThing().getStatus().equals(ThingStatus.ONLINE)) {
+                    if (isLocalIn) {
+                        logger.debug("Requesting local update for {}", this.deviceid);
+                        account.addLanService(deviceid);
+                        // account.requestLanUpdate(deviceid);
+                        // account.requestLanUpdate();
+                    }
+                    startTasks();
                 }
                 if (!account.getMode().equals("local")) {
                     logger.debug("Requesting cloud update for {}", this.deviceid);
                     account.queueMessage(new SonoffCommandMessage(deviceid));
                 }
-                startTasks();
                 updateStatus();
             } else {
                 if (isLocalIn) {
@@ -177,7 +179,7 @@ public abstract class SonoffBaseDeviceHandler extends BaseThingHandler implement
     }
 
     public void queueMessage(SonoffCommandMessage message) {
-        logger.debug("Sonoff - Command Payload:{}", message.getParams());
+        logger.debug("Sonoff - Command Payload: {}", message.getParams());
         SonoffAccountHandler account = this.account;
         if (account != null) {
             account.queueMessage(message);
