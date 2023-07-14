@@ -49,6 +49,7 @@ public abstract class SonoffBaseDeviceHandler extends BaseThingHandler implement
     protected Boolean isLocalIn = false;
     protected Boolean isLocalOut = false;
     protected String deviceid = "";
+    boolean taskStarted = false;
 
     protected @Nullable SonoffAccountHandler account;
     protected final Map<String, SonoffRfDeviceListener> rfListeners = new HashMap<>();
@@ -110,6 +111,7 @@ public abstract class SonoffBaseDeviceHandler extends BaseThingHandler implement
             account.removeDeviceListener(this.deviceid);
         }
         cancelTasks();
+        this.taskStarted = false;
         this.cloud = false;
         this.local = false;
         this.account = null;
@@ -122,7 +124,7 @@ public abstract class SonoffBaseDeviceHandler extends BaseThingHandler implement
         SonoffAccountHandler account = this.account;
         if (account != null) {
             if (bridgeStatusInfo.getStatus().equals(ThingStatus.ONLINE)) {
-                if (!getThing().getStatus().equals(ThingStatus.ONLINE)) {
+                if (!taskStarted) {
                     if (isLocalIn) {
                         logger.debug("Requesting local update for {}", this.deviceid);
                         account.addLanService(deviceid);
@@ -130,6 +132,7 @@ public abstract class SonoffBaseDeviceHandler extends BaseThingHandler implement
                         // account.requestLanUpdate();
                     }
                     startTasks();
+                    taskStarted = true;
                 }
                 if (!account.getMode().equals("local")) {
                     logger.debug("Requesting cloud update for {}", this.deviceid);
@@ -141,6 +144,7 @@ public abstract class SonoffBaseDeviceHandler extends BaseThingHandler implement
                     account.removeLanService(deviceid);
                 }
                 cancelTasks();
+                taskStarted = false;
                 updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR, "Bridge Offline");
             }
         }

@@ -48,6 +48,7 @@ public abstract class SonoffBaseBridgeHandler extends BaseBridgeHandler implemen
     protected Boolean local = false;
     protected Boolean isLocalIn = false;
     protected Boolean isLocalOut = false;
+    protected boolean taskStarted = false;
 
     protected @Nullable SonoffAccountHandler account;
     protected final Map<String, SonoffRfDeviceListener> rfListeners = new HashMap<>();
@@ -110,6 +111,7 @@ public abstract class SonoffBaseBridgeHandler extends BaseBridgeHandler implemen
             account.removeDeviceListener(this.deviceid);
         }
         cancelTasks();
+        this.taskStarted = false;
         this.cloud = false;
         this.local = false;
         this.account = null;
@@ -122,12 +124,13 @@ public abstract class SonoffBaseBridgeHandler extends BaseBridgeHandler implemen
         SonoffAccountHandler account = this.account;
         if (account != null) {
             if (bridgeStatusInfo.getStatus().equals(ThingStatus.ONLINE)) {
-                if (!getThing().getStatus().equals(ThingStatus.ONLINE)) {
+                if (!taskStarted) {
                     if (isLocalIn) {
                         account.addLanService(deviceid);
                         // account.requestLanUpdate(deviceid);
                     }
                     startTasks();
+                    taskStarted = true;
                 }
                 account.queueMessage(new SonoffCommandMessage(deviceid));
                 updateStatus();
@@ -136,6 +139,7 @@ public abstract class SonoffBaseBridgeHandler extends BaseBridgeHandler implemen
                     account.removeLanService(deviceid);
                 }
                 cancelTasks();
+                taskStarted = false;
                 updateStatus(ThingStatus.OFFLINE, ThingStatusDetail.COMMUNICATION_ERROR, "Bridge Offline");
             }
         }
