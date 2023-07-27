@@ -8,6 +8,16 @@
 		<label>Sonoff Account Thing</label>
 		<description>Sonoff Account</description>
 		<config-description>
+			<parameter name="appId" type="text" required="true">
+				<label>App Id</label>
+				<description>App Id</description>
+				<default>R8Oq3y0eSZSYdKccHlrQzT1ACCOUT9Gv</default>
+			</parameter>
+			<parameter name="appSecret" type="text" required="true">
+				<label>App Secret</label>
+				<description>App Secret</description>
+				<default>1ve5Qk9GXfUhKAn1svnKwpAlxXkMarru</default>
+			</parameter>
 			<parameter name="email" type="text" required="true">
 				<label>Email</label>
 				<description>Email</description>
@@ -15,6 +25,7 @@
 			<parameter name="password" type="text" required="true">
 				<label>Password</label>
 				<description>Password</description>
+				<context>password</context>
 			</parameter>
 			<parameter name="accessmode" type="text" required="true">
 				<label>Access Mode</label>

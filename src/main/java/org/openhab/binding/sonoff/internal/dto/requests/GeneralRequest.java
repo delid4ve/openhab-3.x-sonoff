@@ -20,11 +20,15 @@ import org.openhab.binding.sonoff.internal.communication.SonoffCommandMessageUti
  */
 public class GeneralRequest {
 
-    private String appid = SonoffCommandMessageUtilities.APPID;
+    private String appid;
     private String nonce = SonoffCommandMessageUtilities.getNonce();
     private Long ts = SonoffCommandMessageUtilities.getTs();
     private int version = SonoffCommandMessageUtilities.VERSION;
     private String accept;
+
+    public GeneralRequest(String appId) {
+        this.appid = appId;
+    }
 
     public String getAppid() {
         return this.appid;

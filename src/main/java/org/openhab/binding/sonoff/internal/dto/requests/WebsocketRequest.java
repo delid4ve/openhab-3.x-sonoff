@@ -36,7 +36,7 @@ public class WebsocketRequest {
     private final String tempRec;
 
     // This for logging in
-    public WebsocketRequest(String apikey, String at) {
+    public WebsocketRequest(String appId, String apikey, String at) {
         this.action = "userOnline";
         this.apikey = apikey;
         // this.sequence = sequence;
@@ -44,7 +44,7 @@ public class WebsocketRequest {
         this.deviceid = null;
         this.params = null;
         this.tempRec = null;
-        this.appid = SonoffCommandMessageUtilities.APPID;
+        this.appid = appId;
         this.nonce = SonoffCommandMessageUtilities.getNonce();
         this.ts = SonoffCommandMessageUtilities.getTs() / 1000;
         this.version = SonoffCommandMessageUtilities.VERSION;

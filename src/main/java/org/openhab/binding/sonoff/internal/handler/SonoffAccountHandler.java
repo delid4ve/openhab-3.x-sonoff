@@ -100,7 +100,7 @@ public class SonoffAccountHandler extends BaseBridgeHandler
         restoreStates();
         queueTask = scheduler.scheduleWithFixedDelay(commandManager, 0, 100, TimeUnit.MILLISECONDS);
 
-        connectionManager.start(config.email, config.password, config.accessmode);
+        connectionManager.start(config.appId, config.appSecret, config.email, config.password, config.accessmode);
         createTasks();
     }
 

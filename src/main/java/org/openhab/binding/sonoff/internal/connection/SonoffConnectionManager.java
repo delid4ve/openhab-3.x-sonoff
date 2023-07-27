@@ -51,8 +51,10 @@ public class SonoffConnectionManager
         this.webSocket = new SonoffWebSocketConnection(this, webSocketClient);
     }
 
-    public void start(String email, String password, String mode) {
+    public void start(String appId, String appSecret, String email, String password, String mode) {
         this.mode = mode;
+        api.setAppId(appId);
+        api.setAppSecret(appSecret);
         api.setEmail(email);
         api.setPassword(password);
         if (!mode.equals("cloud")) {
@@ -104,6 +106,7 @@ public class SonoffConnectionManager
         logger.debug("Api {}", connected ? "connected" : "disconnected");
         webSocket.setAt(api.getAt());
         webSocket.setApiKey(api.getApiKey());
+        webSocket.setAppId(api.getAppId());
         listener.setApiKey(apiKey);
 
         // discovery uses the api only if in local mode
@@ -156,7 +159,6 @@ public class SonoffConnectionManager
 
     /**
      * Allows the discovery service to use the current api connection
-     * 
      */
     public SonoffApiConnection getApi() {
         return this.api;
@@ -164,15 +166,13 @@ public class SonoffConnectionManager
 
     /**
      * Allows the discovery service to check what mode we are in
-     * 
      */
     public String getMode() {
         return this.mode;
     }
 
     /**
-     * Allows devices to add a sub service to the LAN connection
-     * in order to initially rsesolve the state
+     * Allows devices to add a sub service to the LAN connection in order to initially rsesolve the state
      */
     public void addSubService(String deviceid) {
         if (lanConnected) {
@@ -184,7 +184,6 @@ public class SonoffConnectionManager
 
     /**
      * Allows devices to remove a sub service to the LAN connection
-     * 
      */
     public void removeSubService(String deviceid) {
         if (lanConnected) {
@@ -196,7 +195,6 @@ public class SonoffConnectionManager
 
     /**
      * Send LAN messages coming back from the message provider
-     *
      */
     public void sendLanMessage(String url, String payload) {
         lan.sendMessage(url, payload);
@@ -204,7 +202,6 @@ public class SonoffConnectionManager
 
     /**
      * Send Api messages coming back from the message provider
-     *
      */
     public void sendApiMessage(String deviceid) {
         if (!webSocketLoggedIn) {
@@ -220,7 +217,6 @@ public class SonoffConnectionManager
 
     /**
      * Send Websocket messages coming back from the message provider
-     *
      */
     public void sendWebsocketMessage(String params) {
         webSocket.sendMessage(params);

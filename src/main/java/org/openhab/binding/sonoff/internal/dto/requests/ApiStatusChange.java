@@ -26,6 +26,8 @@ import com.google.gson.annotations.SerializedName;
  */
 public class ApiStatusChange extends AbstractCommand<ApiStatusChange> implements Serializable {
 
+    private static final long serialVersionUID = 2958983062170484126L;
+
     @SerializedName("deviceid")
     @Expose
     private String deviceid;
@@ -34,14 +36,17 @@ public class ApiStatusChange extends AbstractCommand<ApiStatusChange> implements
     private Integer version = SonoffCommandMessageUtilities.VERSION;
     @SerializedName("appid")
     @Expose
-    private String appid = SonoffCommandMessageUtilities.APPID;
+    private String appid;
     @SerializedName("ts")
     @Expose
     private Long ts = SonoffCommandMessageUtilities.getTs();
     @SerializedName("params")
     @Expose
     private String params;
-    private static final long serialVersionUID = 2958983062170484126L;
+
+    public ApiStatusChange(String appId) {
+        this.appid = appId;
+    }
 
     public Integer getVersion() {
         return this.version;

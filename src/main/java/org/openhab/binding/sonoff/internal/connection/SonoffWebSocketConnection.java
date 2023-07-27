@@ -48,6 +48,7 @@ public class SonoffWebSocketConnection {
     private String url = "";
     private String apiKey = "";
     private String at = "";
+    private String appId = "";
 
     private @Nullable Session session;
 
@@ -69,8 +70,12 @@ public class SonoffWebSocketConnection {
         this.at = at;
     }
 
+    public void setAppId(String appId) {
+        this.appId = appId;
+    }
+
     public void login() {
-        WebsocketRequest request = new WebsocketRequest(this.apiKey, this.at);
+        WebsocketRequest request = new WebsocketRequest(this.appId, this.apiKey, this.at);
         sendMessage(gson.toJson(request));
     }
 

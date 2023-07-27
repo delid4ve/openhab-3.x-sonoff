@@ -33,8 +33,8 @@ public class SonoffCommandMessageUtilities {
         ("R8Oq3y0eSZSYdKccHlrQzT1ACCOUT9Gv", "1ve5Qk9GXfUhKAn1svnKwpAlxXkMarru")
     ]
     */
-    public static final String APPID = "KOBxGJna5qkk3JLXw3LHLX3wSNiPjAVi";
-    public static final String APPSECRET = "4v0sv6X5IM2ASIBiNDj6kGmSfxo40w7n";
+    public static final String APPID = "";
+    public static final String APPSECRET = "";
     private static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     public static final Integer VERSION = 8;
     private static SecureRandom rnd = new SecureRandom();
