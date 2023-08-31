@@ -12,6 +12,6 @@
 
   <artifactId>org.openhab.binding.sonoff</artifactId>
 
-  <name>openHAB Add-ons :: Bundles :: sonoff Binding</name>
+  <name>openHAB Add-ons :: Bundles :: Sonoff Binding</name>
 
 </project>

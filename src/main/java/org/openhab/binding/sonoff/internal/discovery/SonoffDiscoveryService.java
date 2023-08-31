@@ -51,10 +51,9 @@ import com.google.gson.JsonObject;
  * @author David Murton - Initial contribution
  */
 
-@Component(service = SonoffDiscoveryService.class, immediate = true, configurationPid = "discovery.sonoff")
-
 @NonNullByDefault
-public class SonoffDiscoveryService extends AbstractDiscoveryService implements ThingHandlerService, DiscoveryService {
+@Component(service = DiscoveryService.class, configurationPid = "discovery.sonoff")
+public class SonoffDiscoveryService extends AbstractDiscoveryService implements ThingHandlerService {
     // , DiscoveryService {
     private final Logger logger = LoggerFactory.getLogger(SonoffDiscoveryService.class);
     private static final int DISCOVER_TIMEOUT_SECONDS = 10;
