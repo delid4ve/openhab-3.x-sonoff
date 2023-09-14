@@ -26,6 +26,8 @@ import javax.jmdns.ServiceInfo;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
 import org.openhab.binding.sonoff.internal.connection.SonoffConnectionManagerListener;
+import org.openhab.binding.sonoff.internal.dto.commands.MultiSwitch;
+import org.openhab.binding.sonoff.internal.dto.commands.SingleSwitch;
 import org.openhab.binding.sonoff.internal.dto.requests.WebsocketRequest;
 import org.openhab.binding.sonoff.internal.dto.responses.LanResponse;
 import org.openhab.binding.sonoff.internal.handler.SonoffDeviceListener;
@@ -39,25 +41,26 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 /**
- * The {@link SonoffCommunicationManager} provides a sequential queue for outgoing messages
- * accross connections and allows for retrying when messages are not delivered
- * correctly
+ * The {@link SonoffCommunicationManager} provides a sequential queue for outgoing messages accross connections and
+ * allows for retrying when messages are not delivered correctly
  *
  * @author David Murton - Initial contribution
  */
 @NonNullByDefault
 public class SonoffCommunicationManager implements Runnable, SonoffConnectionManagerListener {
 
+    private static final int QUEUE_SIZE = 100;
+
     private final Logger logger = LoggerFactory.getLogger(SonoffCommunicationManager.class);
     // Queue Utilities
     // Map of message retry attempts
-    private final ConcurrentMap<Long, CountDownLatch> latchMap = new ConcurrentHashMap<Long, CountDownLatch>();
+    private final ConcurrentMap<Long, CountDownLatch> latchMap = new ConcurrentHashMap<>();
     // Queue of messages to send
-    private final BlockingDeque<SonoffCommandMessage> queue = new LinkedBlockingDeque<SonoffCommandMessage>();
+    private final BlockingDeque<SonoffCommandMessage> queue = new LinkedBlockingDeque<>();
     // Map of Integers so we can count retry attempts.
-    private final ConcurrentMap<Long, Integer> retryCountMap = new ConcurrentHashMap<Long, Integer>();
+    private final ConcurrentMap<Long, Integer> retryCountMap = new ConcurrentHashMap<>();
     // Map of our message types so we can process them correctly
-    private final ConcurrentMap<Long, String> messageTypes = new ConcurrentHashMap<Long, String>();
+    private final ConcurrentMap<Long, String> messageTypes = new ConcurrentHashMap<>();
     // Timeout
     private final int timeoutForOkMessagesMs = 1000;
     // Boolean to indicate if we are running
@@ -104,10 +107,16 @@ public class SonoffCommunicationManager implements Runnable, SonoffConnectionMan
         try {
             // Get the first message in the queue
             final @Nullable SonoffCommandMessage message = queue.take();
+            logger.debug("Start processing: {}. {} messages remaining in queue", message.getCommand(), queue.size());
+
             if (message.getSequence().equals(0L)) {
                 message.setSequence();
             }
             if (message.getCommand().equals("devices") || message.getCommand().equals("device")) {
+                sendMessage(message);
+            }
+            if (message.getCommand().equals("consumption") || message.getCommand().equals("uiActive")) {
+                messageTypes.put(message.getSequence(), message.getCommand());
                 sendMessage(message);
             } else {
                 // Add our message type so we can identify it correctly when we get the response
@@ -138,7 +147,8 @@ public class SonoffCommunicationManager implements Runnable, SonoffConnectionMan
                             "Ok message not received for transaction: {}, command was {}, retrying again. Retry count {}",
                             message.getSequence(), message.getCommand(), newRetryCount);
                     retryCountMap.put(message.getSequence(), newRetryCount);
-                    queue.addFirst(message);
+
+                    addToQueue(message);
                 }
             }
         } catch (InterruptedException e) {
@@ -150,17 +160,29 @@ public class SonoffCommunicationManager implements Runnable, SonoffConnectionMan
 
     // Add the messsage to the queue
     public void queueMessage(SonoffCommandMessage message) {
-        try {
-            if (running) {
-                message.setSequence();
-                queue.put(message);
-                logger.debug("Added a message to the queue");
-            } else {
-                logger.info("Message not added to queue as we are shutting down");
-            }
-        } catch (InterruptedException e) {
-            logger.error("Error adding command to queue:{}", e.getMessage());
+        if (running) {
+            message.setSequence();
+
+            addToQueue(message);
+        } else {
+            logger.info("Message not added to queue as we are shutting down");
         }
+    }
+
+    private void addToQueue(SonoffCommandMessage message) {
+        if (queue.size() >= QUEUE_SIZE) {
+            logger.debug("Queue full, removing one message from queue, {} messages in queue", queue.size());
+            queue.poll();
+        }
+
+        if (message.getCommand().equals("switch") && ((SingleSwitch) message.getParams()).getSwitch() != null
+                || message.getCommand().equals("switches") && !((MultiSwitch) message.getParams()).getSwitches().isEmpty()) {
+            queue.addFirst(message);
+        } else {
+            queue.add(message);
+        }
+
+        logger.debug("Added a message to the queue: {}, {} messages in queue", message.getCommand(), queue.size());
     }
 
     private void okMessage(Long sequence) {
@@ -172,7 +194,6 @@ public class SonoffCommunicationManager implements Runnable, SonoffConnectionMan
 
     /**
      * Forward messages to the appropriate connection
-     *
      */
     public void sendMessage(SonoffCommandMessage message) {
         // Send Api Device requests
@@ -226,7 +247,6 @@ public class SonoffCommunicationManager implements Runnable, SonoffConnectionMan
 
     /**
      * Processes and forwards incoming states to the appropriate device handler
-     *
      */
     private synchronized void processState(JsonObject device, Boolean encrypted) {
         String deviceid = device.get("deviceid").getAsString();

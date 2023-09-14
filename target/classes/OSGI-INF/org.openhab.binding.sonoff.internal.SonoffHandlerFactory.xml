@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.4.0" name="org.openhab.binding.sonoff.internal.SonoffHandlerFactory" configuration-pid="binding.sonoff" init="2">
-  <service>
-    <provide interface="org.openhab.core.thing.binding.ThingHandlerFactory"/>
-  </service>
-  <reference name="$000" interface="org.openhab.core.io.net.http.WebSocketFactory" parameter="0"/>
-  <reference name="$001" interface="org.openhab.core.io.net.http.HttpClientFactory" parameter="1"/>
-  <implementation class="org.openhab.binding.sonoff.internal.SonoffHandlerFactory"/>
-</scr:component>

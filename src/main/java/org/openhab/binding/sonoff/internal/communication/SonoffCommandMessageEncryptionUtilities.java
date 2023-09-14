@@ -44,10 +44,10 @@ public class SonoffCommandMessageEncryptionUtilities {
     private static final String DIGESTALG = "MD5";
     private static final Charset CHARSET = StandardCharsets.UTF_8;
 
-    public String getAuthMac(String data)
+    public String getAuthMac(String appSecret, String data)
             throws UnsupportedEncodingException, NoSuchAlgorithmException, InvalidKeyException {
         Mac mac = null;
-        byte[] byteKey = SonoffCommandMessageUtilities.APPSECRET.getBytes(CHARSET);
+        byte[] byteKey = appSecret.getBytes(CHARSET);
         mac = Mac.getInstance(HMAC);
         SecretKeySpec keySpec = new SecretKeySpec(byteKey, HMAC);
         mac.init(keySpec);

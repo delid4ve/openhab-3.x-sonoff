@@ -32,8 +32,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 /**
- * The {@link SonoffWebSocketConnection} class is the websocket Connection to the Ewelink API to
- * enable streaming data and uses the shared websocketClient
+ * The {@link SonoffWebSocketConnection} class is the websocket Connection to the Ewelink API to enable streaming data
+ * and uses the shared websocketClient
  *
  * @author David Murton - Initial contribution
  */
@@ -48,6 +48,7 @@ public class SonoffWebSocketConnection {
     private String url = "";
     private String apiKey = "";
     private String at = "";
+    private String appId = "";
 
     private @Nullable Session session;
 
@@ -69,8 +70,12 @@ public class SonoffWebSocketConnection {
         this.at = at;
     }
 
+    public void setAppId(String appId) {
+        this.appId = appId;
+    }
+
     public void login() {
-        WebsocketRequest request = new WebsocketRequest(this.apiKey, this.at);
+        WebsocketRequest request = new WebsocketRequest(this.appId, this.apiKey, this.at);
         sendMessage(gson.toJson(request));
     }
 
@@ -154,6 +159,7 @@ public class SonoffWebSocketConnection {
 
     @OnWebSocketError
     public void onError(Throwable cause) {
+        logger.error("Websocket Error: " + cause.getMessage(), cause);
         String reason = cause.getMessage();
         if (reason != null) {
             onClose(0, reason);

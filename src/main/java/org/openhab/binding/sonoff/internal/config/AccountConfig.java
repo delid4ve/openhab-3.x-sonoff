@@ -22,6 +22,8 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 @NonNullByDefault
 public class AccountConfig {
 
+    public String appId = "";
+    public String appSecret = "";
     public String email = "";
     public String password = "";
     public String accessmode = "";

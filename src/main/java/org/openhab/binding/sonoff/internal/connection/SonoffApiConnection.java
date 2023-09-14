@@ -63,6 +63,8 @@ public class SonoffApiConnection {
     private String email = "";
     private String password = "";
     private String webSocketServer = "";
+    private String appId = "";
+    private String appSecret = "";
 
     public SonoffApiConnection(SonoffApiConnectionListener listener, HttpClient httpClient) {
         this.gson = new Gson();
@@ -92,6 +94,22 @@ public class SonoffApiConnection {
         this.region = region;
     }
 
+    public void setAppId(String appId) {
+        this.appId = appId;
+    }
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppSecret(String appSecret) {
+        this.appSecret = appSecret;
+    }
+
+    public String getAppSecret() {
+        return appSecret;
+    }
+
     public String getApiKey() {
         return this.apiKey;
     }
@@ -116,10 +134,10 @@ public class SonoffApiConnection {
         try {
             ContentResponse contentResponse = httpClient.newRequest(url).header("accept", "application/json")
                     .header("Content-Type", "application/json")
-                    .header("X-CK-Appid", SonoffCommandMessageUtilities.APPID)
+                    .header("X-CK-Appid", this.appId)
                     .header("X-CK-Nonce", SonoffCommandMessageUtilities.getNonce())
                     .header("Authorization",
-                            "Sign " + new SonoffCommandMessageEncryptionUtilities().getAuthMac(gson.toJson(request)))
+                            "Sign " + new SonoffCommandMessageEncryptionUtilities().getAuthMac(this.appSecret, gson.toJson(request)))
                     .method("POST").content(new StringContentProvider(gson.toJson(request)), "application/json").send();
             if (contentResponse != null) {
                 logger.debug("Api Login Response:{}", contentResponse.getContentAsString());
@@ -164,7 +182,7 @@ public class SonoffApiConnection {
 
     public String getWebsocketServer() {
         logger.debug("Attempt to get websocket server");
-        GeneralRequest request = new GeneralRequest();
+        GeneralRequest request = new GeneralRequest(this.appId);
         request.setAccept("ws");
         // WsServerResponse response = new WsServerResponse();
         logger.debug("Websocket URL Request:{}", gson.toJson(request));
@@ -175,7 +193,7 @@ public class SonoffApiConnection {
             logger.debug("Websocket URL Response:{}", contentResponse.getContentAsString());
             WsServerResponse response = gson.fromJson(contentResponse.getContentAsString(), WsServerResponse.class);
             if (response != null) {
-                if ((!response.getError().equals(0)) || response.getError() == null) {
+                if (!response.getError().equals(0) || response.getError() == null) {
                     listener.apiConnected(false, "", "");
                     return "";
                 } else {
@@ -194,11 +212,11 @@ public class SonoffApiConnection {
     }
 
     public String createCache() throws IOException, InterruptedException, TimeoutException, ExecutionException {
-        GeneralRequest request = new GeneralRequest();
+        GeneralRequest request = new GeneralRequest(this.appId);
         logger.debug("Api Cache Request:{}", gson.toJson(request));
         String url = this.baseUrl + "/v2/device/thing";
         ContentResponse contentResponse = httpClient.newRequest(url).header("Authorization", "Bearer " + this.at)
-                .header("Content-Type", "application/json").header("X-CK-Appid", SonoffCommandMessageUtilities.APPID)
+                .header("Content-Type", "application/json").header("X-CK-Appid", this.appId)
                 .header("X-CK-Nonce", SonoffCommandMessageUtilities.getNonce()).method("GET").send();
         logger.debug("Api Cache response:{}", contentResponse.getContentAsString());
         return contentResponse.getContentAsString();
@@ -213,7 +231,7 @@ public class SonoffApiConnection {
         String url = this.baseUrl + "/v2/device/thing";
         logger.debug("Api Get Device Request for id:{}", deviceid);
         ContentResponse response = httpClient.newRequest(url).header("Content-Type", "application/json")
-                .header("X-CK-Appid", SonoffCommandMessageUtilities.APPID)
+                .header("X-CK-Appid", this.appId)
                 .header("X-CK-Nonce", SonoffCommandMessageUtilities.getNonce())
                 .header("Authorization", "Bearer " + this.at)
                 .content(new StringContentProvider(gson.toJson(request)), "application/json").method("POST").send();
@@ -221,11 +239,11 @@ public class SonoffApiConnection {
     }
 
     public void getDevices() {
-        GeneralRequest request = new GeneralRequest();
+        GeneralRequest request = new GeneralRequest(this.appId);
         logger.debug("Api Devices Request:{}", gson.toJson(request));
         String url = this.baseUrl + "/v2/device/thing";
         httpClient.newRequest(url).header("Authorization", "Bearer " + this.at)
-                .header("Content-Type", "application/json").header("X-CK-Appid", SonoffCommandMessageUtilities.APPID)
+                .header("Content-Type", "application/json").header("X-CK-Appid", this.appId)
                 .header("X-CK-Nonce", SonoffCommandMessageUtilities.getNonce()).method("GET")
                 .send(new BufferingResponseListener(8 * 1024 * 1024) {
                     @Override
@@ -257,7 +275,7 @@ public class SonoffApiConnection {
         String url = this.baseUrl + "/v2/device/thing";
         logger.debug("Api Get Device Request for id:{}", deviceid);
         httpClient.newRequest(url).header("Content-Type", "application/json")
-                .header("X-CK-Appid", SonoffCommandMessageUtilities.APPID)
+                .header("X-CK-Appid", this.appId)
                 .header("X-CK-Nonce", SonoffCommandMessageUtilities.getNonce())
                 .header("Authorization", "Bearer " + this.at)
                 .content(new StringContentProvider(gson.toJson(request)), "application/json").method("POST")
